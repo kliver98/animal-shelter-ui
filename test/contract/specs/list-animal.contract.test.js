@@ -3,12 +3,15 @@ import { AnimalController } from '../../../controllers';
 import { Matchers } from '@pact-foundation/pact';
 
 describe('Given an animal sevrice', () => {
+    beforeAll(async() => {
+        await provider.setup();
+    });
+
     describe('Where a request to list all the animal is made', () => {
         beforeAll(async() => {
-            await provider.setup();
             await provider.addInteraction({
-                state: 'there are animals',
-                uponReceiving: 'a request to get all animals',
+                state: 'has animals',
+                uponReceiving: 'a request to list all animals',
                 withRequest: {
                     method: 'GET',
                     path: '/animals'
@@ -16,25 +19,25 @@ describe('Given an animal sevrice', () => {
                 willRespondWith: {
                     status: 200,
                     body: Matchers.eachLike({
-                        breed: Matchers.like("Bengali"),
-                        gender: Matchers.term({generate: 'Female', matcher:"Female|Male"}),
-                        isVaccinated: Matchers.boolean(true),
                         name: Matchers.string('Manchas'),
-                        vaccines: Matchers.eachLike('rabia', {min: 1})
+                        breed: Matchers.like("Bengali"),
+                        gender: Matchers.like("Female"),
+                        vaccinated: Matchers.boolean(true),
                     }, {min: 1})
                 }
             });
         });
 
-        it('Then it should return the right data', async() => {
+        test('Then it should return the right data', async() => {
             const response = await AnimalController.list();
             expect(response.data).toMatchSnapshot();
 
             await provider.verify();
         })
 
-        afterAll(async () => {
-            await provider.finalize();
-        });
+    });
+
+    afterAll(async () => {
+        await provider.finalize();
     });
 });
