@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Given an animal sevrice Where a request to list all the animal is made Then it should return the right data 1`] = `
+exports[`Given an animal service When a request to list all the animal is made Then it should return the right data 1`] = `
 Array [
   Object {
     "breed": "Bengali",

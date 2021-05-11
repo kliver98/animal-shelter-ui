@@ -2,12 +2,12 @@ import { provider } from './init-pact';
 import { AnimalController } from '../../../controllers';
 import { Matchers } from '@pact-foundation/pact';
 
-describe('Given an animal sevrice', () => {
+describe('Given an animal service', () => {
     beforeAll(async() => {
         await provider.setup();
     });
 
-    describe('Where a request to list all the animal is made', () => {
+    describe('When a request to list all the animal is made', () => {
         beforeAll(async() => {
             await provider.addInteraction({
                 state: 'has animals',
