@@ -1,4 +1,4 @@
-import { provider } from './init-pact';
+import { provider } from '../config/init-pact';
 import { AnimalController } from '../../../controllers';
 import { Matchers } from '@pact-foundation/pact';
 

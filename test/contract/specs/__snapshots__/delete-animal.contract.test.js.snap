@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given an animal service When a request to delete an animal is made Then it should return message confirming the animal deleted 1`] = `
+Array [
+  Object {
+    "message": "Animal deleted successfully",
+  },
+]
+`;
