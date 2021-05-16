@@ -11,8 +11,8 @@ describe('Given an animal service', () =>{
    describe('When a request to delete an animal is made', () =>{
         beforeAll(async ()=>{
             await provider.addInteraction({
-                uponReceiving: 'a request to delete the animal created',
-                state:"has no animal ",
+                uponReceiving: 'a request to delete an animal',
+                state:"has no animal",
                 withRequest: {
                     method: 'DELETE',
                     path: `/animals/${name_not_exist}`,			
