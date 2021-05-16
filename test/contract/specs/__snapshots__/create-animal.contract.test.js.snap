@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Given an animal service When a request to create an animal is made Then it should return the right data 1`] = `""`;

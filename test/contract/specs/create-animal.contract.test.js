@@ -17,7 +17,7 @@ describe('Given an animal service', () => {
     describe('When a request to create an animal is made', () => {
         beforeAll(async() => {
             await provider.addInteraction({
-                state: 'backend service is up',
+                state: 'create a new animal',
                 uponReceiving: 'a request to create an animal',
                 withRequest: {
                     method: 'POST',

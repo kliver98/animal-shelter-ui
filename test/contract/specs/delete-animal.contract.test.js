@@ -12,7 +12,7 @@ describe('Given an animal service', () =>{
         beforeAll(async ()=>{
             await provider.addInteraction({
                 uponReceiving: 'a request to delete an animal',
-                state:"has no animal",
+                state:"delete animal that does not exist",
                 withRequest: {
                     method: 'DELETE',
                     path: `/animals/${name_not_exist}`,			

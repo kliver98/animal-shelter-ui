@@ -10,7 +10,7 @@ describe('Given an animal service', () => {
     describe('When a request to list all the animal is made', () => {
         beforeAll(async() => {
             await provider.addInteraction({
-                state: 'has animals',
+                state: 'has animals and want to list them',
                 uponReceiving: 'a request to list all animals',
                 withRequest: {
                     method: 'GET',
