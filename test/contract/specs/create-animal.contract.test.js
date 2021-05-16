@@ -1,6 +1,5 @@
 import { provider } from '../config/init-pact';
 import { AnimalController } from '../../../controllers';
-import { Matchers } from '@pact-foundation/pact';
 
 const animal = {
     'name': 'Manchitas',
@@ -26,8 +25,7 @@ describe('Given an animal service', () => {
                     body: animal
                 },
                 willRespondWith: {
-                    status: 201,
-                    body: Matchers.like(animal)
+                    status: 201
                 }
             });
         });
