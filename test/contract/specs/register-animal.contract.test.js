@@ -3,11 +3,11 @@ import { AnimalController } from '../../../controllers';
 import { Matchers } from '@pact-foundation/pact';
 
 const animal = {
-    'name': 'pruebaaa',
-    'breed': 'Birmano',
-    'gender': 'Male',
+    'name': 'Manchitas',
+    'breed': 'Bengali',
+    'gender': 'Female',
     'isVaccinated': true,
-    'vaccines': ["gripe","peritonitisInfecciosa"]
+    'vaccines': []
 }
 
 describe('Given an animal service', () => {
@@ -22,18 +22,12 @@ describe('Given an animal service', () => {
                 uponReceiving: 'a request to create an animal',
                 withRequest: {
                     method: 'POST',
-                    path: '/animals'
+                    path: '/animals',
+                    body: animal
                 },
                 willRespondWith: {
                     status: 201,
-                    body: Matchers.eachLike({
-                        name: Matchers.string('Manchas'),
-                        breed: Matchers.like("Bengali"),
-                        //gender: Matchers.term({generate: 'Female', matcher: 'Female|Male'}),
-                        gender: Matchers.like("Female"),
-                        vaccinated: Matchers.boolean(true),
-                        vaccines: Matchers.eachLike("Rabia", {min: 1})
-                    }, {min: 1})
+                    body: Matchers.like(animal)
                 }
             });
         });

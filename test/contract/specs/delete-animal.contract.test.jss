@@ -1,39 +1,33 @@
 import { provider } from '../config/init-pact';
 import { AnimalController } from '../../../controllers';
-import { Matchers } from '@pact-foundation/pact';
 
-const animal_name = 'prueba';
-
+const name_not_exist = 'not_exist_never'
 describe('Given an animal service', () => {
     beforeAll(async() => {
         await provider.setup();
     });
 
     describe('When a request to delete an animal is made', () => {
-        beforeAll(async() => {
+        beforeAll(async () => {
             await provider.addInteraction({
-                state: 'backend service is up',
+                state: 'animal does not exist',
                 uponReceiving: 'a request to delete an animal',
                 withRequest: {
                     method: 'DELETE',
-                    path: '/animals/'+animal_name
+                    path: `/animals/${name_not_exist}`,
                 },
                 willRespondWith: {
-                    status: 200,
-                    body: Matchers.eachLike({
-                        message: Matchers.string('Animal deleted successfully'),
-                    }, {min: 1})
+                    status: 404
                 }
             });
         });
 
-        test('Then it should return message confirming the animal deleted', async() => {
-            const response = await AnimalController.delete(animal_name);
-            expect(response.data).toMatchSnapshot();
-
+        test("Then it should return the right data", async() =>{
+            const response = await AnimalController.delete(name_not_exist);
+            await console.log('Hola')
+            expect(response.data).toEqual(404);
             await provider.verify();
-        })
-
+        });
     });
 
     afterAll(async () => {
